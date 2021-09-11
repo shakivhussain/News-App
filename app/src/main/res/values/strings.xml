@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">News App</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="popular_category">Popular Category</string>
+
+    <string name="favorite">Favorite</string>
+    <string name="home">Home</string>
+    <string name="profile">Profile</string>
+    <string name="saved">Saved</string>
+    <string name="science_fiction">Science Fiction</string>
+    <string name="search">Search</string>
+    <string name="december_14_2016">December 14, 2016</string>
+</resources>
