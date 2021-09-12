@@ -4,7 +4,7 @@ object Constant {
 
 
     val BASE_URL = "https://newsapi.org"
-    val API_KEY = "Your Key"
+    val API_KEY = "6837b1fe03d242d4ba22ff7a91502252"
 
     
 }

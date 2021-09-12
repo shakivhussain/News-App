@@ -9,6 +9,14 @@
     <color name="white">#FFFFFFFF</color>
 
 
+    <color name="colorPrimary">#432fbf</color>
+    <color name="colorPrimaryDark">#432fbf</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="colorTextPrimary">#ffffff</color>
+    <color name="colorTextSecondary">#A3FFFFFF</color>
+    <color name="colorBadge">#f4d415</color>
+
     <color name="bar_indicator_color">#D4F5FA</color>
     <color name="bar_icon_tint">#CFD0E2</color>
     <color name="bar_icon_tint_active">#35B7CF</color>

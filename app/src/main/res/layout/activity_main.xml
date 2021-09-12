@@ -9,13 +9,11 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:fillViewport="true"
         android:focusableInTouchMode="true"
-
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/smoothBottomBar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -23,16 +21,104 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/topLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imageCategory"
+                    android:layout_width="@dimen/_22sdp"
+                    android:layout_height="@dimen/_22sdp"
+                    android:layout_marginStart="@dimen/_16sdp"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:src="@drawable/ic_category"
+                    android:tint="@color/primary_label"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textCategory"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:text="@string/latest_news"
+                    android:textColor="@color/primary_label"
+                    android:fontFamily="@font/rubik_medium"
+                    android:textSize="@dimen/_14ssp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@id/imageCategory"
+                    app:layout_constraintStart_toEndOf="@id/imageCategory"
+                    app:layout_constraintTop_toTopOf="@id/imageCategory" />
+
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="@dimen/_22sdp"
+                    android:layout_height="@dimen/_22sdp"
+                    android:id="@+id/notification"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:layout_marginEnd="@dimen/_16sdp"
+                    android:src="@drawable/ic_notifications"
+                    android:tint="@color/secondary_label"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <LinearLayout
+                    android:id="@+id/layoutSearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_16sdp"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:layout_marginEnd="@dimen/_16sdp"
+                    android:background="@drawable/background_search"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingStart="@dimen/_16sdp"
+                    android:paddingTop="@dimen/_8sdp"
+                    android:paddingEnd="@dimen/_16sdp"
+                    android:paddingBottom="@dimen/_8sdp"
+                    app:layout_constraintTop_toBottomOf="@id/imageCategory">
+
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="@dimen/_22sdp"
+                        android:layout_height="@dimen/_22sdp"
+                        android:src="@drawable/ic_search"
+                        android:tint="@color/primary_label" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:id="@+id/searchEditText"
+                        android:layout_height="match_parent"
+                        android:background="@null"
+                        android:focusable="false"
+                        android:hint="@string/search"
+                        android:importantForAutofill="no"
+                        android:inputType="text"
+                        android:textColor="@color/primary_label"
+                        android:textColorHint="@color/secondary_label"
+                        android:textSize="@dimen/_13sdp" />
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
 
             <LinearLayout
                 android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
                 android:orientation="vertical"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:visibility="visible"
+                app:layout_constraintTop_toBottomOf="@+id/topLayout">
 
 
                 <TextView
@@ -40,9 +126,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_16sdp"
                     android:layout_marginTop="@dimen/_18sdp"
-                    android:text="@string/popular_category"
+                    android:fontFamily="@font/rubik_bold"
+                    android:text="Top Headlines"
                     android:textColor="@color/primary_label"
-                    android:textSize="@dimen/_18sdp"
+                    android:textSize="@dimen/_21sdp"
                     android:textStyle="bold" />
 
                 <com.google.android.material.tabs.TabLayout
@@ -50,14 +137,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_18sdp"
-                    android:layout_marginTop="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_16sdp"
                     android:background="@drawable/background_search"
                     app:tabIndicatorAnimationMode="linear"
-                    app:tabIndicatorColor="@color/bar_indicator_color"
+                    app:tabIndicatorColor="@color/purple_500"
                     app:tabMode="scrollable"
-                    app:tabRippleColor="@color/teal_700"
-                    app:tabSelectedTextColor="@color/bar_icon_tint_active"
-                    app:tabTextColor="@color/black" />
+                    app:tabRippleColor="@color/bar_indicator_color"
+                    app:tabSelectedTextColor="@color/colorPrimary"
+                    app:tabTextColor="@color/secondary_label" />
 
                 <androidx.viewpager.widget.ViewPager
                     android:id="@+id/viewPager"
@@ -72,4 +159,27 @@
 
     </ScrollView>
 
+
+    <me.ibrahimsn.lib.SmoothBottomBar
+        android:id="@+id/smoothBottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_60sdp"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:layout_marginEnd="@dimen/_8sdp"
+        android:layout_marginBottom="@dimen/_8sdp"
+        android:paddingStart="@dimen/_10sdp"
+        android:paddingEnd="@dimen/_10sdp"
+        app:backgroundColor="@color/colorPrimary"
+        app:cornerRadius="@dimen/_16sdp"
+        app:iconSize="@dimen/_18sdp"
+        app:iconTint="@color/colorTextSecondary"
+        app:iconTintActive="@color/white"
+        app:indicatorRadius="@dimen/_8sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/menu_bottom_navigation"
+        app:textColor="@color/colorTextPrimary"
+        app:textSize="@dimen/_10sdp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

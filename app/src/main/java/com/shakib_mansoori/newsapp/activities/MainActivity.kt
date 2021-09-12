@@ -4,6 +4,8 @@ import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
+import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
@@ -58,12 +60,57 @@ class MainActivity : AppCompatActivity() {
             override fun onTabReselected(tab: TabLayout.Tab) {}
         })
 
+
+        apply {
+
+            binding.smoothBottomBar.onItemSelected = {
+
+                when (it) {
+                    0 -> Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show()
+                    1 -> Toast.makeText(this, "Favorite", Toast.LENGTH_SHORT).show()
+                    2 -> Toast.makeText(this, "Bookmark", Toast.LENGTH_SHORT).show()
+                    3 -> Toast.makeText(this, "Profile", Toast.LENGTH_SHORT).show()
+                }
+
+            }
+
+
+            dialogSet()
+
+            init()
+        }
+
+        apply {
+
+            binding.searchEditText.setOnClickListener(View.OnClickListener {
+
+                Toast.makeText(this, "Search Feature Under Development...", Toast.LENGTH_SHORT)
+                    .show()
+
+            })
+
+            binding.notification.setOnClickListener(View.OnClickListener {
+
+                Toast.makeText(
+                    this,
+                    "Notification Feature, Under Development...",
+                    Toast.LENGTH_SHORT
+                ).show()
+
+            })
+
+        }
+
+
+    }
+
+    private fun dialogSet() {
+
         dialog = Dialog(this)
         dialog.setContentView(R.layout.layout_progress)
         dialog.setCancelable(false)
         dialog.show()
 
-        init()
     }
 
     private fun init() {
