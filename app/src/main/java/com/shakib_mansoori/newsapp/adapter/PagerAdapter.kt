@@ -2,23 +2,26 @@ package com.shakib_mansoori.newsapp.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentPagerAdapter
+import androidx.lifecycle.Lifecycle
+import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.shakib_mansoori.newsapp.fragments.*
 
-class PagerAdapter(fm: FragmentManager?, var allTabs: Int) :
-    FragmentPagerAdapter(fm!!, allTabs) {
-    override fun getItem(position: Int): Fragment {
-        return when (position) {
-            0 -> HealthFragment()
-            1 -> PoliticsFragment()
-            2 -> SceinceFragment()
-            3 -> ArtFragment()
-            4 -> FoodFragment()
-            else -> HealthFragment()
+
+class PagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
+    FragmentStateAdapter(fragmentManager, lifecycle) {
+    override fun createFragment(position: Int): Fragment {
+        when (position) {
+            1 -> return HealthFragment()
+            2 -> return PoliticsFragment()
+            3 -> return SceinceFragment()
+            4 -> return ArtFragment()
+            5 -> return FoodFragment()
         }
+        return return HealthFragment();
     }
 
-    override fun getCount(): Int {
-        return allTabs
+    override fun getItemCount(): Int {
+        return 5
     }
 }
+

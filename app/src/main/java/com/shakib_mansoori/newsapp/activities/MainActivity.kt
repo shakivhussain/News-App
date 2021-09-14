@@ -8,10 +8,10 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.viewpager.widget.ViewPager
+import androidx.viewpager2.widget.ViewPager2
+import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
-import com.google.android.material.tabs.TabLayout.TabLayoutOnPageChangeListener
 import com.shakib_mansoori.newsapp.R
 import com.shakib_mansoori.newsapp.adapter.PagerAdapter
 import com.shakib_mansoori.newsapp.databinding.ActivityMainBinding
@@ -23,8 +23,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: ViewModel
     private lateinit var dialog: Dialog
     private lateinit var tabLayout: TabLayout
-    private lateinit var viewPager: ViewPager
+    private lateinit var viewPager: ViewPager2
     private lateinit var checkInternet: CheckInternet
+    private lateinit var pagerAdapter: PagerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,29 +36,33 @@ class MainActivity : AppCompatActivity() {
         tabLayout = binding.tablayout
         viewPager = binding.viewPager
 
+        val fm = supportFragmentManager
+
+        pagerAdapter = PagerAdapter(fm, lifecycle)
+        viewPager.adapter = pagerAdapter
+
         tabLayout.addTab(tabLayout.newTab().setText("Health"))
         tabLayout.addTab(tabLayout.newTab().setText("Politics"))
         tabLayout.addTab(tabLayout.newTab().setText("Science"))
         tabLayout.addTab(tabLayout.newTab().setText("Business"))
         tabLayout.addTab(tabLayout.newTab().setText("Technology"))
 
-
-        viewPager.adapter = PagerAdapter(supportFragmentManager, tabLayout.tabCount)
-
-        viewPager.addOnPageChangeListener(TabLayoutOnPageChangeListener(tabLayout))
-
         tabLayout.addOnTabSelectedListener(object : OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
-                viewPager.setCurrentItem(tab.position)
-                if (tab.position == 0 || tab.position == 1 || tab.position == 2 ||
-                    tab.position == 3 || tab.position == 4
-                ) {
-
-                }
+                viewPager.currentItem = tab.position
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab) {}
             override fun onTabReselected(tab: TabLayout.Tab) {}
+        })
+
+
+        viewPager.registerOnPageChangeCallback(object : OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                tabLayout.selectTab(tabLayout.getTabAt(position))
+            }
+
         })
 
 
